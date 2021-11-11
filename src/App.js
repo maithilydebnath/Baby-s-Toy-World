@@ -12,6 +12,9 @@ import Header from './componenets/Shared/Header/Header';
 import Login from './componenets/Login/Login/Login';
 import Register from './componenets/Login/Register/Register';
 import AuthProvider from './contexts/AuthProvider';
+import Explore from './componenets/Explore/Explore';
+import PrivateRoute from './componenets/Login/PrivateRoute/PrivateRoute';
+import Dashboard from './componenets/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -26,6 +29,9 @@ function App() {
             <Route path="/home">
               <Home></Home>
             </Route>
+            <PrivateRoute path="/dashboard">
+            <Dashboard></Dashboard>
+            </PrivateRoute>
             {/* <PrivateRoute path="/manageAllOrders">
               <ManageAllOrders></ManageAllOrders>
             </PrivateRoute> */}
@@ -35,12 +41,12 @@ function App() {
             <PrivateRoute path="/addPlace">
               <AddPlace></AddPlace>
             </PrivateRoute> */}
-            {/* <Route path="/whyUs">
-              <WhyUs></WhyUs>
+            {/* <Route path="/dashboard">
+              <Dashboard></Dashboard>
             </Route> */}
-            {/* <Route path="/features">
-             <Features></Features>
-            </Route> */}
+            <Route path="/explore">
+             <Explore></Explore>
+            </Route>
             <Route path="/login">
               <Login></Login>
             </Route>

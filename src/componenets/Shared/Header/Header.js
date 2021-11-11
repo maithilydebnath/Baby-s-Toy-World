@@ -19,9 +19,9 @@ const Header = () => {
                         <Navbar.Collapse className="justify-content-end">
                             <Nav>
                                 <Nav.Link as={HashLink} to="/home#home"><b>Home</b></Nav.Link>
-                                <Nav.Link as={HashLink} to="/home#products"><b>Baby Toys</b></Nav.Link>
+                                {/* <Nav.Link as={HashLink} to="/home#products"><b>Explore</b></Nav.Link> */}
                                 {/* <Nav.Link as={Link} to="/addPlace">Add Place</Nav.Link> */}
-                                {/* <Nav.Link as={Link} to="/login">Login</Nav.Link> */}
+                                <Nav.Link as={Link} to="/explore"> <b>Explore</b> </Nav.Link>
                                 {/* <Nav.Link as={Link} to="/features">Features</Nav.Link>
                                 <Nav.Link as={Link} to="/manageAllOrders">ManageAllOrders</Nav.Link>
                                 <Nav.Link as={Link} to="/myOrders">MyOrders</Nav.Link> */}
@@ -29,9 +29,11 @@ const Header = () => {
 
 
                                 {user?.email ?
-
-                                    <Button onClick={logout} variant="light">Logout</Button> :
-                                    <Nav.Link as={Link} to="/login">Login</Nav.Link>}
+                                <div className='d-flex'> 
+                                    <Nav.Link as={Link} to="/dashboard"><b>Dashboard</b></Nav.Link>
+                                    <Button onClick={logout} variant="light">Logout</Button> 
+                                </div>    
+                                    :<Nav.Link as={Link} to="/login"> <b>Login</b> </Nav.Link>}
 
                                 <Navbar.Text>
                                     <a href="#login">{user?.displayName}</a>
