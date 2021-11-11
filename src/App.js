@@ -9,11 +9,14 @@ import Home from './componenets/Home/Home/Home';
 import NotFound from './componenets/NotFound/NotFound';
 import Footer from './componenets/Shared/Footer/Footer';
 import Header from './componenets/Shared/Header/Header';
+import Login from './componenets/Login/Login/Login';
+import Register from './componenets/Login/Register/Register';
+import AuthProvider from './contexts/AuthProvider';
 
 function App() {
   return (
     <div className="App">
-      {/* <AuthProvider> */}
+      <AuthProvider>
       <Router>
           <Header></Header>
           <Switch>
@@ -38,12 +41,12 @@ function App() {
             {/* <Route path="/features">
              <Features></Features>
             </Route> */}
-            {/* <Route path="/login">
+            <Route path="/login">
               <Login></Login>
-            </Route> */}
-            {/* <Route path="/register">
+            </Route>
+            <Route path="/register">
               <Register></Register>
-            </Route> */}
+            </Route>
 
             {/* <PrivateRoute exact path="/booking/:placeId">
               <Booking></Booking>
@@ -54,7 +57,7 @@ function App() {
           </Switch>
           <Footer></Footer>
         </Router>
-      {/* </AuthProvider> */}
+      </AuthProvider>
     </div>
   );
 }

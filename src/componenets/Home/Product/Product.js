@@ -12,7 +12,7 @@ const Product = ({ product }) => {
         <p className="px-2">{description}</p>
         <h6>Price: $ {price}</h6>
         {/* <Link to={`/booking/${id}`}> */}
-            <button className="btn btn-secondary m-2">Buy Now</button>
+            <button className="btn btn-primary m-2">Buy Now</button>
         {/* </Link> */}
             
         </div>

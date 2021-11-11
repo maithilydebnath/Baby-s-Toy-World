@@ -1,59 +1,86 @@
-import React from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Container, Typography, TextField, Button, CircularProgress, Alert } from '@mui/material';
+import React, { useState } from 'react';
+import { Grid } from '@mui/material';
+import register from '../../../images/RegisterNow_small.jpg'
+import { NavLink, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+// import useAuth from './../../../hooks/useAuth';
 
 const Register = () => {
-    const { signInUsingGoogle,
-        handleRegistration,
-        handleEmailChange,
-        handlePasswordChange, error, setError } = useAuth();
-    const location = useLocation();
+    const [loginData, setLoginData] = useState({});
     const history = useHistory();
-    // const redirect_uri = location.state?.from || '/serviceDetails/:serviceId';
-    const redirect_uri = location.state?.from || '/';
+    const { user, registerUser, isLoading, authError } = useAuth();
 
-    const handleGoogleLogin = () => {
-        signInUsingGoogle()
-            .then(result => {
-                history.push(redirect_uri);
-            })
-
+    const handleOnBlur = e => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const newLoginData = { ...loginData };
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
     }
-
+    const handleLoginSubmit = e => {
+        if (loginData.password !== loginData.password2) {
+            alert('Your password did not match');
+            return
+        }
+        registerUser(loginData.email, loginData.password, loginData.name, history);
+        e.preventDefault();
+    }
     return (
-        <div className="mx-5">
-            <div className="container col-12">
-                <h2 className="m-4">Register: Create Account</h2>
-                <form onSubmit={handleRegistration}>
-                    <div className="row mb-3">
-                        <label htmlFor="inputAddress" className=" col-sm-2 col-form-label">Name</label>
-                        <div className="col-sm-8">
-                            <input type="text" className="form-control" placeholder="Your Name" />
-                        </div>
+        <Container>
+            <Grid container spacing={2}>
+                 <Grid item xs={12} md={6}>
+                    <img style={{ width: '100%' }} src={register} alt="" />
+                </Grid>
+                <Grid item sx={{ mt: 8 }} xs={12} md={6}>
+                    <Typography variant="body1" gutterBottom>Register</Typography>
+                    {!isLoading && <form onSubmit={handleLoginSubmit}>
+                        <TextField
+                            sx={{ width: '75%', m: 1 }}
+                            id="standard-basic"
+                            label="Your Name"
+                            name="name"
+                            onBlur={handleOnBlur}
+                            variant="standard" />
+                        <TextField
+                            sx={{ width: '75%', m: 1 }}
+                            id="standard-basic"
+                            label="Your Email"
+                            name="email"
+                            type="email"
+                            onBlur={handleOnBlur}
+                            variant="standard" />
+                        <TextField
+                            sx={{ width: '75%', m: 1 }}
+                            id="standard-basic"
+                            label="Your Password"
+                            type="password"
+                            name="password"
+                            onBlur={handleOnBlur}
+                            variant="standard" />
+                        <TextField
+                            sx={{ width: '75%', m: 1 }}
+                            id="standard-basic"
+                            label="ReType Your Password"
+                            type="password"
+                            name="password2"
+                            onBlur={handleOnBlur}
+                            variant="standard" />
 
-                    </div>
-
-                    <div className="row mb-3">
-                        <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
-                        <div className="col-sm-8">
-                            <input onBlur={handleEmailChange} type="email" className="form-control" id="inputEmail3" required />
-                        </div>
-                    </div>
-                    <div className="row mb-3">
-                        <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
-                        <div className="col-sm-8">
-                            <input onBlur={handlePasswordChange} type="password" className="form-control" id="inputPassword3" required />
-                        </div>
-                    </div>
-                    <div className="row mb-3 text-danger"> {error}</div>
-                    <button type="submit" className="btn btn-warning">Create Account</button>
-
-                </form>
-                <p className="m-3">Already have an account ? <Link to="/login">Login</Link></p>
-                <div className="m-3">-----------------or-----------------------</div>
-                <button onClick={handleGoogleLogin} className="btn btn-warning m-2 mb-5">Google Sign In</button>
-            </div>
-        </div>
+                        <Button sx={{ width: '75%', m: 1 }} type="submit" variant="contained">Register</Button>
+                        <NavLink
+                            style={{ textDecoration: 'none' }}
+                            to="/login">
+                            <Button variant="text">Already Registered? Please Login</Button>
+                        </NavLink>
+                    </form>}
+                    {isLoading && <CircularProgress />}
+                    {user?.email && <Alert severity="success">User Created successfully!</Alert>}
+                    {authError && <Alert severity="error">{authError}</Alert>}
+                </Grid>
+               
+            </Grid>
+        </Container>
     );
 };
 
