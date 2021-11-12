@@ -33,7 +33,7 @@ const AddAProduct = () => {
             <form  className="mt-5 mb-5"onSubmit={handleSubmit(onSubmit)}>
                 <input  {...register("name", { required: true, maxLength: 20 })} placeholder="Name" />
                 <textarea {...register("description")} placeholder="Description" />
-                <input type="number" {...register("price")} placeholder="price" />
+                <input type="number" {...register("price")} placeholder="$price" />
                 <input {...register("img")} placeholder="image url" />
                 <input className="btn btn-primary m-2 " type="submit" />
             </form>

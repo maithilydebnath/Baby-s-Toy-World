@@ -1,0 +1,33 @@
+.purchase-form{
+    /* margin:30px 150px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.purchase-form input{
+    /* display: block; */
+   
+    margin-top: 30px;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 300px;
+}
+.form-style {
+    margin-top: 30px;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.purchase-form img{
+    width: 20%;
+    height: 20%;
+}
+.error{
+    color: red;
+}

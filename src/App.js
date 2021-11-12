@@ -16,6 +16,7 @@ import Explore from './componenets/Explore/Explore';
 import PrivateRoute from './componenets/Login/PrivateRoute/PrivateRoute';
 import Dashboard from './componenets/Dashboard/Dashboard';
 import AddAProduct from './componenets/Dashboard/Admin/AddAProduct/AddAProduct';
+import Purchase from './componenets/Purchase/Purchase';
 
 function App() {
   return (
@@ -58,9 +59,9 @@ function App() {
               <Register></Register>
             </Route>
 
-            {/* <PrivateRoute exact path="/booking/:placeId">
-              <Booking></Booking>
-            </PrivateRoute> */}
+            <PrivateRoute exact path="/purchase/:productId">
+              <Purchase></Purchase>
+            </PrivateRoute>
             <Route path="*">
               <NotFound></NotFound>
             </Route>
