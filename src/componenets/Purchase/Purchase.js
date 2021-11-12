@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import useAuth from '../../hooks/useAuth';
 import './Purchase.css';
 
+
 const Purchase = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
    
@@ -22,9 +23,8 @@ const Purchase = () => {
 
     }, [])
     
-    const onSubmit = data => {
-      
-        
+    const onSubmit = data => {   
+        data.status ='pending';  
         fetch('http://localhost:5000/purchase', {
             method: 'POST',
             headers: {
@@ -44,29 +44,41 @@ const Purchase = () => {
     }
 
     return (
-        <div>
-            <h2>Purchase</h2>
-            <h3 className="mt-4 mb-4 text-primary"> Purchase Details : {product.name}</h3>
+        <div >
+             <h2 className="m-2">Purchase</h2>
+            <h4 className="mt-4 mb-4 text-primary"> Purchase Details : {product.name}</h4>
             <h5 className="mt-4 mb-4">Purchase Id : {productId}</h5>
-            
-            <form className="purchase-form" onSubmit={handleSubmit(onSubmit)}>
+            <div className="container">
+                <div className="row">
+                    <div className="col purchase text-center mt-3">
+                    <img src={product.img} alt="" srcset="" />
+                    <p className="mt-2 "><b>Product:{product.name}</b></p>
+                    <p className="mt-2 "><b>Price:$ {product.price}</b></p>
+                    </div>
+                    <div className="col">
+                    <form className="purchase-form" onSubmit={handleSubmit(onSubmit)}>
               
-                <img src={product.img} alt="" srcset="" />
-                <p className="mt-2"><b>Purpose:{product.name}</b></p>
-                <p className="mt-2"><b>Price:$ {product.price}</b></p>
-                <input defaultValue={product.name} {...register("purpose")} />
-                <input defaultValue={product.price} {...register("$price")} />
-                <input defaultValue={user.displayName} {...register("name")} />
+                    {/* <img src={product.img} alt="" srcset="" /> */}
+                    {/* <p className="mt-2 text-start"><b>Product:{product.name}</b></p>
+                    <p className="mt-2 text-start"><b>Price:$ {product.price}</b></p> */}
+                    <input defaultValue={product.name} {...register("product")} />
+                    <input defaultValue={product.price} {...register("price")} />
+                    <input defaultValue={user.displayName} {...register("name")} />
 
-                <input defaultValue={user.email} {...register("email", { required: true })} />
-                {errors.email && <span className="error">This field is required</span>}
-                <input placeholder="Address" defaultValue="" {...register("address")} />
-                <input placeholder="City" defaultValue="" {...register("city")} />
-                <input placeholder="phone number" defaultValue="" {...register("phone")} />
-                                 
-                <input className="button" type="submit" />
-                
-            </form>
+                    <input defaultValue={user.email} {...register("email", { required: true })} />
+                    {errors.email && <span className="error">This field is required</span>}
+                    <input placeholder="Address" defaultValue="" {...register("address")} />
+                    <input placeholder="City" defaultValue="" {...register("city")} />
+                    <input placeholder="phone number" defaultValue="" {...register("phone")} />
+                                    
+                    <input className="btn btn-primary mb-3" type="submit" />
+                    
+                </form>
+                    </div>       
+                </div>
+            </div>
+            
+            
         </div>
     );
 };

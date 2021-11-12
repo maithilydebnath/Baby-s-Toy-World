@@ -1,9 +1,14 @@
+.purchase img{
+   margin: 10px;
+   width: 60%;
+   height: 60%;
+}
 .purchase-form{
     /* margin:30px 150px; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     
     
 }

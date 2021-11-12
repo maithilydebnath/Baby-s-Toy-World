@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../Home/Product/Product';
+import Footer from '../Shared/Footer/Footer';
 
 
 const Explore = () => {
@@ -21,6 +22,7 @@ const Explore = () => {
                     ></Product>)
                 }
             </div>
+            <Footer></Footer>
             
         </div>
     );

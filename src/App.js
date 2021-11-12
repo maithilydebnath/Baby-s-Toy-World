@@ -17,6 +17,7 @@ import PrivateRoute from './componenets/Login/PrivateRoute/PrivateRoute';
 import Dashboard from './componenets/Dashboard/Dashboard';
 import AddAProduct from './componenets/Dashboard/Admin/AddAProduct/AddAProduct';
 import Purchase from './componenets/Purchase/Purchase';
+import ManageAllOrders from './componenets/Dashboard/Admin/ManageAllOrders/ManageAllOrders';
 
 function App() {
   return (
@@ -37,9 +38,9 @@ function App() {
             <PrivateRoute path="/addAProduct">
             <AddAProduct></AddAProduct>
             </PrivateRoute>
-            {/* <PrivateRoute path="/manageAllOrders">
+            <PrivateRoute path="/manageAllOrders">
               <ManageAllOrders></ManageAllOrders>
-            </PrivateRoute> */}
+            </PrivateRoute>
             {/* <PrivateRoute path="/myOrders">
               <MyOrders></MyOrders>
             </PrivateRoute>
@@ -66,7 +67,7 @@ function App() {
               <NotFound></NotFound>
             </Route>
           </Switch>
-          <Footer></Footer>
+          {/* <Footer></Footer> */}
         </Router>
       </AuthProvider>
     </div>

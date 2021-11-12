@@ -32,7 +32,7 @@ const Login = () => {
         <Container>
             <Grid container spacing={2}>
                  <Grid item xs={12} md={6}>
-                    <img style={{ width: '100%' }} src={login} alt="" />
+                    <img style={{ width: '80%' }} src={login} alt="" />
                 </Grid>
                 <Grid item sx={{ mt: 8 }} xs={12} md={6}>
                     <Typography variant="body1" gutterBottom> <b>Login</b> </Typography>

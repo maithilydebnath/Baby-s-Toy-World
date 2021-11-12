@@ -25,11 +25,14 @@ import { Button } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 import AddAProduct from './Admin/AddAProduct/AddAProduct';
 import Explore from '../Explore/Explore';
-// import DashboardHome from '../DashboardHome/DashboardHome';
-// import MakeAdmin from '../MakeAdmin/MakeAdmin';
-// import AddDoctor from '../AddDoctor/AddDoctor';
-// import useAuth from './../../../hooks/useAuth';
-// import AdminRoute from './../../Login/AdminRoute/AdminRoute';
+import ManageAllOrders from './Admin/ManageAllOrders/ManageAllOrders';
+import MyOrders from './Users/MyOrders/MyOrders';
+import Pay from './Users/Pay/Pay';
+import Review from './Users/Review/Review';
+import ManageProducts from './Admin/ManageProducts/ManageProducts';
+import MakeAdmin from './Admin/MakeAdmin/MakeAdmin';
+import AdminRoute from '../Login/AdminRoute/AdminRoute';
+
 
 const drawerWidth = 200;
 
@@ -37,7 +40,7 @@ function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     let { path, url } = useRouteMatch();
-    const { admin, user } = useAuth();
+    const { admin, user, logout } = useAuth();
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -49,8 +52,8 @@ function Dashboard(props) {
             <Link to="/explore"><Button color="inherit">Explore</Button></Link>
             <br/>
             <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
-            {/* {admin && <Box> */}
-            {<Box>
+            {admin && <Box>
+            {/* {<Box> */}
                 <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
                 <Link to={`${url}/addAProduct`}><Button color="inherit">Add A Product</Button></Link>
                 <Link to={`${url}/manageAllOrders`}><Button color="inherit">Manage All Orders</Button></Link>
@@ -59,9 +62,11 @@ function Dashboard(props) {
             {user && <Box>
                 <Link to={`${url}/myOrders`}><Button color="inherit">My Orders</Button></Link><br/>                
                 <Link to={`${url}/pay`}><Button color="inherit">Pay</Button></Link> <br/>               
-                <Link to={`${url}/review`}><Button color="inherit">Review</Button></Link>
+                <Link to={`${url}/review`}><Button color="inherit">Review</Button></Link> <br/>
                 
             </Box>}
+            
+            <Link to={`${url}`}><Button onClick={logout} color="inherit">Logout</Button></Link>
             {/* <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
@@ -145,13 +150,31 @@ function Dashboard(props) {
                 <Route exact path={path}>
                       <Explore></Explore>
                     </Route>
-                    <Route exact path={`${path}/addAProduct`}>
+                    <AdminRoute  path={`${path}/addAProduct`}>
                        <AddAProduct></AddAProduct>
+                    </AdminRoute>
+                    <AdminRoute  path={`${path}/manageAllOrders`}>
+                       <ManageAllOrders></ManageAllOrders>
+                    </AdminRoute>
+                    <Route  path={`${path}/myOrders`}>
+                      <MyOrders></MyOrders>
                     </Route>
-                    {/* <AdminRoute path={`${path}/makeAdmin`}>
+                    <Route  path={`${path}/pay`}>
+                      <Pay></Pay>
+                    </Route>
+                    <Route  path={`${path}/review`}>
+                    <Review></Review>
+                    </Route>
+                    <AdminRoute  path={`${path}/manageProducts`}>
+                      <ManageProducts></ManageProducts>
+                    </AdminRoute>
+                    {/* <Route  path={`${path}/makeAdmin`}>
+                    <MakeAdmin></MakeAdmin>
+                    </Route> */}
+                    <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin></MakeAdmin>
                     </AdminRoute>
-                    <AdminRoute path={`${path}/addDoctor`}>
+                    {/* <AdminRoute path={`${path}/addDoctor`}>
                         <AddDoctor></AddDoctor>
                     </AdminRoute> */}
                 </Switch>
