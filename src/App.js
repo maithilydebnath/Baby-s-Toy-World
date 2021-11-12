@@ -15,6 +15,7 @@ import AuthProvider from './contexts/AuthProvider';
 import Explore from './componenets/Explore/Explore';
 import PrivateRoute from './componenets/Login/PrivateRoute/PrivateRoute';
 import Dashboard from './componenets/Dashboard/Dashboard';
+import AddAProduct from './componenets/Dashboard/Admin/AddAProduct/AddAProduct';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
             </Route>
             <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
+            </PrivateRoute>
+            <PrivateRoute path="/addAProduct">
+            <AddAProduct></AddAProduct>
             </PrivateRoute>
             {/* <PrivateRoute path="/manageAllOrders">
               <ManageAllOrders></ManageAllOrders>

@@ -24,6 +24,7 @@ import {
 import { Button } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 import AddAProduct from './Admin/AddAProduct/AddAProduct';
+import Explore from '../Explore/Explore';
 // import DashboardHome from '../DashboardHome/DashboardHome';
 // import MakeAdmin from '../MakeAdmin/MakeAdmin';
 // import AddDoctor from '../AddDoctor/AddDoctor';
@@ -44,18 +45,20 @@ function Dashboard(props) {
     const drawer = (
         <div>
             <Toolbar />
-            <Divider />
+            {/* <Divider /> */}
             <Link to="/explore"><Button color="inherit">Explore</Button></Link>
+            <br/>
             <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
-            {admin && <Box>
+            {/* {admin && <Box> */}
+            {<Box>
                 <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
-                <Link to={`${url}/addProduct`}><Button color="inherit">Add A Product</Button></Link>
+                <Link to={`${url}/addAProduct`}><Button color="inherit">Add A Product</Button></Link>
                 <Link to={`${url}/manageAllOrders`}><Button color="inherit">Manage All Orders</Button></Link>
                 <Link to={`${url}/ManageProducts`}><Button color="inherit">Manage Products</Button></Link>
             </Box>}
             {user && <Box>
-                <Link to={`${url}/myOrders`}><Button color="inherit">My Orders</Button></Link>
-                <Link to={`${url}/pay`}><Button color="inherit">Pay</Button></Link>
+                <Link to={`${url}/myOrders`}><Button color="inherit">My Orders</Button></Link><br/>                
+                <Link to={`${url}/pay`}><Button color="inherit">Pay</Button></Link> <br/>               
                 <Link to={`${url}/review`}><Button color="inherit">Review</Button></Link>
                 
             </Box>}
@@ -80,8 +83,10 @@ function Dashboard(props) {
             <AppBar
                 position="fixed"
                 sx={{
-                    width: { sm: `calc(100% - ${drawerWidth}px)` },
+                    width: { sm: `calc(100% - ${drawerWidth}px)`, },
                     ml: { sm: `${drawerWidth}px` },
+                    backgroundColor:'#f1f3f2',
+                    color:'black'
                 }}
             >
                 <Toolbar>
@@ -137,6 +142,9 @@ function Dashboard(props) {
                 <Toolbar />
 
                 <Switch>
+                <Route exact path={path}>
+                      <Explore></Explore>
+                    </Route>
                     <Route exact path={`${path}/addAProduct`}>
                        <AddAProduct></AddAProduct>
                     </Route>
