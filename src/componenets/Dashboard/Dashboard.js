@@ -52,31 +52,22 @@ function Dashboard(props) {
             <Link to="/explore"><Button color="inherit">Explore</Button></Link>
             <br/>
             <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
-            {admin && <Box>
-            {/* {<Box> */}
+           { admin  ? 
+            (<Box> 
                 <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
                 <Link to={`${url}/addAProduct`}><Button color="inherit">Add A Product</Button></Link>
                 <Link to={`${url}/manageAllOrders`}><Button color="inherit">Manage All Orders</Button></Link>
                 <Link to={`${url}/ManageProducts`}><Button color="inherit">Manage Products</Button></Link>
-            </Box>}
-            {user && <Box>
+            </Box>):(
+             <Box>
                 <Link to={`${url}/myOrders`}><Button color="inherit">My Orders</Button></Link><br/>                
                 <Link to={`${url}/pay`}><Button color="inherit">Pay</Button></Link> <br/>               
                 <Link to={`${url}/review`}><Button color="inherit">Review</Button></Link> <br/>
                 
-            </Box>}
+            </Box>)}
             
             <Link to={`${url}`}><Button onClick={logout} color="inherit">Logout</Button></Link>
-            {/* <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List> */}
+            
         </div>
     );
 
