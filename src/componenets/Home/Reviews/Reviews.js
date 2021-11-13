@@ -14,7 +14,7 @@ const Reviews = () => {
             <div  className="product-container container ">
                 {
                     reviews.map(review => 
-                    <div className="border border-1" key={review._id}> 
+                    <div className="border border-2" key={review._id}> 
                         <h5 className="mt-3">Client Email: {review.email}</h5>
                         <p className="px-2">Comments: {review.comments}</p>
                         <p>Ratings: {review.ratings}</p>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '../../Shared/Footer/Footer';
 import Banner from '../Banner/Banner';
+import ContactUs from '../ContactUs/ContactUs';
 import Products from '../Products/Products';
 import ReturnExchange from '../ReturnExchange/ReturnExchange';
 import Reviews from '../Reviews/Reviews';
@@ -15,6 +16,7 @@ const Home = () => {
             <Products></Products>
             <Reviews></Reviews>
             <ReturnExchange></ReturnExchange>
+            <ContactUs></ContactUs>
             <Footer></Footer>
             {/* <ContactUs></ContactUs> */}
         </div>
