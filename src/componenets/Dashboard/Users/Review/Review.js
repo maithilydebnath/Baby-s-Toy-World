@@ -4,16 +4,23 @@ import useFirebase from "../../../../hooks/useFirebase";
 
 
 const Review = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, watch, errors, reset } = useForm();
   const { user } = useFirebase();
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/addReview", {
+    fetch("https://mysterious-gorge-90895.herokuapp.com/addReview", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((result) => console.log(result));
+      .then((result) => {
+          console.log(result);
+          if (result.insertedId) {
+            alert('Thanks for your review');
+            // clearTheCart();
+            reset();
+        }
+      });
 
     console.log(data);
   };
@@ -36,9 +43,15 @@ const Review = () => {
           {...register("comments", { required: true })}
         />
         <br />
-
         <input
-          className="submit-btn btn btn-danger mt-3"
+          className="input-field"
+          name="Ratings"
+          placeholder="Ratings (0-5)"
+          {...register("ratings", { required: true })}
+        />
+        <br />
+        <input
+          className="submit-btn btn btn-primary mt-3"
           type="submit"
           value="Post"
         />

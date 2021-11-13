@@ -15,7 +15,7 @@ const AddAProduct = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        axios.post('http://localhost:5000/products', data)
+        axios.post('https://mysterious-gorge-90895.herokuapp.com/products', data)
         .then(res => {
             console.log('post hitted')
             if (res.data.insertedId) {

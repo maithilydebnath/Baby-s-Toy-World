@@ -40,7 +40,7 @@ function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     let { path, url } = useRouteMatch();
-    const { admin, user, logout } = useAuth();
+    const { admin, user, logout, isLoading } = useAuth();
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -53,18 +53,22 @@ function Dashboard(props) {
             <br/>
             <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
            { admin  ? 
-            (<Box> 
+            (  
+              <Box> 
                 <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
                 <Link to={`${url}/addAProduct`}><Button color="inherit">Add A Product</Button></Link>
                 <Link to={`${url}/manageAllOrders`}><Button color="inherit">Manage All Orders</Button></Link>
                 <Link to={`${url}/ManageProducts`}><Button color="inherit">Manage Products</Button></Link>
-            </Box>):(
+            </Box>
+            ):(
              <Box>
                 <Link to={`${url}/myOrders`}><Button color="inherit">My Orders</Button></Link><br/>                
                 <Link to={`${url}/pay`}><Button color="inherit">Pay</Button></Link> <br/>               
                 <Link to={`${url}/review`}><Button color="inherit">Review</Button></Link> <br/>
                 
-            </Box>)}
+            </Box>
+             )} 
+            
             
             <Link to={`${url}`}><Button onClick={logout} color="inherit">Logout</Button></Link>
             
@@ -136,8 +140,8 @@ function Dashboard(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-
-                <Switch>
+{/* {isLoading} */}
+                {/* <Switch>
                 <Route exact path={path}>
                       <Explore></Explore>
                     </Route>
@@ -156,19 +160,58 @@ function Dashboard(props) {
                     <Route  path={`${path}/review`}>
                     <Review></Review>
                     </Route>
-                    <AdminRoute  path={`${path}/manageProducts`}>
+                    <AdminRoute path={`${path}/manageProducts`}>
                       <ManageProducts></ManageProducts>
-                    </AdminRoute>
+                    </AdminRoute> */}
                     {/* <Route  path={`${path}/makeAdmin`}>
                     <MakeAdmin></MakeAdmin>
                     </Route> */}
-                    <AdminRoute path={`${path}/makeAdmin`}>
+                    {/* <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin></MakeAdmin>
                     </AdminRoute>
-                    {/* <AdminRoute path={`${path}/addDoctor`}>
-                        <AddDoctor></AddDoctor>
-                    </AdminRoute> */}
+                  
+                </Switch> */}
+               {
+                  !admin && <Switch>
+                    <Route exact path={path}>
+                      <Explore></Explore>
+                    </Route>
+                  <Route  path={`${path}/myOrders`}>
+                      <MyOrders></MyOrders>
+                    </Route>
+                    <Route  path={`${path}/pay`}>
+                      <Pay></Pay>
+                    </Route>
+                    <Route  path={`${path}/review`}>
+                    <Review></Review>
+                    </Route>
+                  </Switch>
+               } 
+               {
+                 admin && <Switch>
+                   <Route exact path={path}>
+                      <Explore></Explore>
+                    </Route>
+                    <Route  path={`${path}/addAProduct`}>
+                       <AddAProduct></AddAProduct>
+                    </Route>
+                    <Route  path={`${path}/manageAllOrders`}>
+                       <ManageAllOrders></ManageAllOrders>
+                    </Route>
+                    
+                    <Route path={`${path}/manageProducts`}>
+                      <ManageProducts></ManageProducts>
+                    </Route>
+                    {/* <Route  path={`${path}/makeAdmin`}>
+                    <MakeAdmin></MakeAdmin>
+                    </Route> */}
+                    <Route path={`${path}/makeAdmin`}>
+                        <MakeAdmin></MakeAdmin>
+                    </ Route>
+                  
                 </Switch>
+               }
+                
 
             </Box>
         </Box>

@@ -17,7 +17,7 @@ const Purchase = () => {
 //   const handleShow = () => setShow(true);
     
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${productId}`)
+        fetch(`https://mysterious-gorge-90895.herokuapp.com/products/${productId}`)
             .then(res => res.json())
             .then(data => setProduct(data));
 
@@ -25,7 +25,7 @@ const Purchase = () => {
     
     const onSubmit = data => {   
         data.status ='pending';  
-        fetch('http://localhost:5000/purchase', {
+        fetch('https://mysterious-gorge-90895.herokuapp.com/purchase', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

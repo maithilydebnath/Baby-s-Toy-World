@@ -18,6 +18,7 @@ import Dashboard from './componenets/Dashboard/Dashboard';
 import AddAProduct from './componenets/Dashboard/Admin/AddAProduct/AddAProduct';
 import Purchase from './componenets/Purchase/Purchase';
 import ManageAllOrders from './componenets/Dashboard/Admin/ManageAllOrders/ManageAllOrders';
+import AdminRoute from './componenets/Login/AdminRoute/AdminRoute';
 
 function App() {
   return (
@@ -35,12 +36,15 @@ function App() {
             <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
             </PrivateRoute>
-            <PrivateRoute path="/addAProduct">
+            <PrivateRoute path="/adminRoute">
+              <AdminRoute></AdminRoute>
+            </PrivateRoute>
+            {/* <PrivateRoute path="/addAProduct">
             <AddAProduct></AddAProduct>
             </PrivateRoute>
             <PrivateRoute path="/manageAllOrders">
               <ManageAllOrders></ManageAllOrders>
-            </PrivateRoute>
+            </PrivateRoute> */}
             {/* <PrivateRoute path="/myOrders">
               <MyOrders></MyOrders>
             </PrivateRoute>

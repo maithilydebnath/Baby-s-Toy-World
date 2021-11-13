@@ -9,7 +9,7 @@ const ReturnExchange = () => {
            <div className="card mb-3 " >
             <div className="row g-2">
                 <div className="col-md-5">
-                <img src={banner} className="img-fluid rounded-start" alt="..."/>
+                <img src={banner} className="img-fluid rounded-start mt-4" alt="..."/>
                 </div>
                 <div className="col-md-7">
                 <div className="card-body text-start">

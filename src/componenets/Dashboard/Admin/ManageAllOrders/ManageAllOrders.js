@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import useAuth from '../../../../hooks/useAuth';
 
 const ManageAllOrders = () => {
     const [users, setUsers] = useState([]);
     const [status, setStatus] = useState("");
     const [orderId, setOrderId] = useState("");
     const { register, handleSubmit, reset } = useForm();
+    const { isLoading  } = useAuth();
 
     useEffect(() => {
-        fetch('http://localhost:5000/purchase')
+        fetch('https://mysterious-gorge-90895.herokuapp.com/purchase')
             .then(res => res.json())
             .then(data => setUsers(data));
     }, []);
@@ -16,10 +18,10 @@ const ManageAllOrders = () => {
         setOrderId(id);
         console.log(id);
       };
-    
+     
       const onSubmit = (data) => {
         console.log(data, orderId);
-        fetch(`http://localhost:5000/statusUpdate/${orderId}`, {
+        fetch(`https://mysterious-gorge-90895.herokuapp.com/statusUpdate/${orderId}`, {
           method: "PUT",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(data),
@@ -40,7 +42,7 @@ const ManageAllOrders = () => {
     const handleDeleteUser = id => {
         const proceed = window.confirm('Are you sure, you want to delete?');
         if (proceed) {
-            const url = `http://localhost:5000/purchase/${id}`;
+            const url = `https://mysterious-gorge-90895.herokuapp.com/purchase/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -80,6 +82,7 @@ const ManageAllOrders = () => {
                   
                   <input className=" m-3" type="submit" />
                 </form>
+                {isLoading }
                     
                         {/* <Link to={`/users/update/${user._id}`}><button className="me-2  button">Update</button></Link> */}
                         <button className="btn btn-primary mb-3" onClick={() => handleDeleteUser(user._id)}>Delete</button>
